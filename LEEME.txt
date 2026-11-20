@@ -1,0 +1,47 @@
+VisionAI Tienda + SigLIP2 (modo IA experimental)
+
+INSTALACION (Windows, Python 3.10 o 3.11 recomendado):
+  py -m pip install -r requirements.txt
+  py main.py
+
+1. Registra un producto con nombre, precio, descripcion y foto.
+2. Seleccionalo en el catalogo y pulsa IA: ANADIR FOTOS AL PRODUCTO.
+   Anade 5-15 fotografias con distintos angulos y fondos por producto.
+3. Registra al menos 2-3 productos distintos para evaluar confusiones.
+4. Enciende la camara y centra UN producto en la imagen.
+5. Pulsa IA: RECONOCER OBJETO CENTRADO.
+6. La primera vez se descarga SigLIP2 desde Hugging Face: requiere internet,
+   espacio en disco y memoria RAM. Puede tardar varios minutos.
+7. El resultado muestra nombre, precio y descripcion de SQLite.
+8. El lector QR original sigue funcionando por separado.
+
+LIMITACIONES HONESTAS:
+- El modo IA reconoce SOLO al pulsar el boton, no continuamente.
+- Compara la zona CENTRAL de la imagen, no dibuja recuadro alrededor
+  del contorno del producto. Es una primera etapa sin YOLO.
+- El modelo esta preentrenado; se calculan embeddings de las fotos.
+  No se reentrenan los pesos de la red.
+- Puede confundir productos visualmente parecidos y rechazar algunos.
+- Umbrales 0.72 y margen 0.045 son iniciales, requieren calibracion.
+- La descarga del modelo puede fallar por conexion, memoria o dependencias.
+- No se ha probado con la webcam ni Windows de tu equipo.
+- Conserva la carpeta datos/ al actualizar para no perder el catalogo.
+
+
+NUEVO: CARRITO Y FACTURAS
+- El boton CARRITO / FACTURA esta arriba, junto a los controles de camara.
+- Cada QR se agrega una vez por compra; cada reconocimiento IA confirmado agrega una unidad.
+- Para repetir un articulo, usa +1 UNIDAD en el carrito.
+- FINALIZAR COMPRA valida existencias, registra venta y detalles en SQLite, descuenta inventario y abre factura HTML imprimible.
+- Usa Imprimir / Guardar como PDF en el navegador.
+- La factura es un comprobante academico, NO un CFDI fiscal.
+- Para conservar productos/fotos, copia datos, fotos_ia, imagenes_productos y etiquetas de tu version funcional a esta carpeta con el programa cerrado.
+
+
+ACTUALIZACIÓN CATÁLOGO Y QR:
+- Botón CATÁLOGO / ELEGIR PRODUCTO arriba, al lado de CARRITO / FACTURA.
+- Busca y selecciona producto para llenar automáticamente el formulario.
+- Opción SELECCIONAR Y AÑADIR FOTOS IA abre directamente el selector de imágenes.
+- Botón VER QR arriba para consultar las etiquetas de productos.
+- Los botones del catálogo inferior se conservan.
+- Para conservar productos y fotos, copiar desde la versión anterior las carpetas datos, etiquetas, fotos_ia, imagenes_productos, facturas con el programa cerrado.
